@@ -1,0 +1,20 @@
+# Version of Compose File (Ver 1 by default, can be specific like Ver3.7)
+version: '3'
+
+# Services correspond to app components, sep' docker imgs for sep' concerns
+# Def [1. Flask Application service = app, 2. Redis service = redis]
+# Can Specify one Image / service & one service / concern
+services:
+  app:
+    # Service uses a custom image built using Dockerfile in current dir. (/.)
+    build: .
+    # if img not on local m/c, D-Compose builds it with name as in 'image' tag
+    image: takacsmark/flask-redis:1.0
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - 5000:5000
+
+  redis:
+    image: redis:4.0.11-alpine
+

@@ -1,0 +1,15 @@
+# We import the Flask class, the request object and jsonify from the flask package.
+
+# Flask is the class that we’ll use to instantiate the Flask application. 
+
+# We handle user requests in the form of the request object and we’ll use jsonify to return json responses from our request handler function, called index
+
+# After the import lines, we use app = Flask(__name__) to create a Flask application instance.
+
+# With redis = Redis(host="redis", db=0, socket_timeout=5, charset="utf-8", decode_responses=True) we create a Redis interface instance in our application
+
+# The rest of the code defines a route that we can send requests to from a browser or an API client like Postman or curl.
+
+# You can send an http POST request to the application with data in the form {"name" : "<some_name>" } to the URI "/" and the app will add a new entry to the end of the students list in Redis.
+
+# Sending an http GET request to the "/" URI will retrieve and return the list of students in the Redis store.
