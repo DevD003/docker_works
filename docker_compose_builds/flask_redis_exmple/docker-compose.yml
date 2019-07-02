@@ -7,7 +7,12 @@ version: '3'
 services:
   app:
     # Service uses a custom image built using Dockerfile in current dir. (/.)
-    build: .
+    build: 
+     # Build Context path
+     context: .
+     # Build arguments
+     args:
+      - IMAGE_VERSION=3.7.0-alpine3.8
     # if img not on local m/c, D-Compose builds it with name as in 'image' tag
     image: takacsmark/flask-redis:1.0
     environment:
