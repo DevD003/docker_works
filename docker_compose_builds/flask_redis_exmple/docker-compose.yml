@@ -17,9 +17,19 @@ services:
     image: takacsmark/flask-redis:1.0
     environment:
       - FLASK_ENV=development
+    # Host port (80); Container Port(5000)
     ports:
-      - 5000:5000
+      - 80:5000
+    # network key to connect to
+    networks:
+      - mynet
 
   redis:
     image: redis:4.0.11-alpine
+    # network key to connect to
+    networks:
+      - mynet
 
+# Bridge-Network - N/W on HOST machine isolated from rest of host N/W stack
+networks:
+  mynet:
