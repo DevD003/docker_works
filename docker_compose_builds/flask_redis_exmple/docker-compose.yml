@@ -29,7 +29,13 @@ services:
     # network key to connect to
     networks:
       - mynet
+    # volumes to connect to
+    volumes:
+      - mydata:/data
 
 # Bridge-Network - N/W on HOST machine isolated from rest of host N/W stack
 networks:
   mynet:
+# named volumes 
+volumes:
+  mydata:
