@@ -12,11 +12,10 @@ services:
      context: .
      # Build arguments
      args:
-      - IMAGE_VERSION=3.7.0-alpine3.8
+      - IMAGE_VERSION=${PYTHON_VERSION}
     # if img not on local m/c, D-Compose builds it with name as in 'image' tag
-    image: takacsmark/flask-redis:1.0
-    environment:
-      - FLASK_ENV=development
+    image: ${DOCKER_USER}/flask-redis:1.0
+    env_file: .env.txt
     # Host port (80); Container Port(5000)
     ports:
       - 80:5000
@@ -25,7 +24,7 @@ services:
       - mynet
 
   redis:
-    image: redis:4.0.11-alpine
+    image: redis:${REDIS_VERSION}
     # network key to connect to
     networks:
       - mynet
