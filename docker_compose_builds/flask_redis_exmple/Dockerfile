@@ -1,4 +1,7 @@
-FROM python:3.7.0-alpine3.8
+# ARG instruction to use argument IMAGE_VERSION 
+ARG IMAGE_VERSION
+
+FROM python:$IMAGE_VERSION
 
 WORKDIR /usr/src/app
 

@@ -7,14 +7,34 @@ version: '3'
 services:
   app:
     # Service uses a custom image built using Dockerfile in current dir. (/.)
-    build: .
+    build: 
+     # Build Context path
+     context: .
+     # Build arguments
+     args:
+      - IMAGE_VERSION=${PYTHON_VERSION}
     # if img not on local m/c, D-Compose builds it with name as in 'image' tag
-    image: takacsmark/flask-redis:1.0
-    environment:
-      - FLASK_ENV=development
+    image: ${DOCKER_USER}/flask-redis:1.0
+    env_file: .env.txt
+    # Host port (80); Container Port(5000)
     ports:
-      - 5000:5000
+      - 80:5000
+    # network key to connect to
+    networks:
+      - mynet
 
   redis:
-    image: redis:4.0.11-alpine
+    image: redis:${REDIS_VERSION}
+    # network key to connect to
+    networks:
+      - mynet
+    # volumes to connect to
+    volumes:
+      - mydata:/data
 
+# Bridge-Network - N/W on HOST machine isolated from rest of host N/W stack
+networks:
+  mynet:
+# named volumes 
+volumes:
+  mydata:
