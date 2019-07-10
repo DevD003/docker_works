@@ -1,6 +1,5 @@
 #Dockerfile based on the latest centOS 7 Image - non-priveleged user entry
 FROM centos:latest
-MAINTAINER DevD003
 
 RUN useradd -ms /bin/bash user
 
